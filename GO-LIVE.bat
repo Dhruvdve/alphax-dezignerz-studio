@@ -30,7 +30,6 @@ powershell -NoProfile -Command "Get-ChildItem -Recurse -File | Where-Object { $_
 echo Staging all files...
 git add -A
 git add public\portfolio\images public\portfolio\videos public\images 2>nul
-git reset public\portfolio\videos\reel-6.mp4 2>nul
 
 echo.
 git status

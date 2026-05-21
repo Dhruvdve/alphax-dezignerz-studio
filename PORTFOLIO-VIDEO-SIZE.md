@@ -4,7 +4,7 @@ GitHub **blocks any file over 100 MB**.
 
 ## Your issue
 
-`public/portfolio/videos/reel-6.mp4` is **~146 MB** → push fails.
+`reel-6.mp4` was **~146 MB** (blocked). After compressing to **under 100 MB**, push works.
 
 ## Fix (choose one)
 

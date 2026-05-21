@@ -1,68 +1,42 @@
 @echo off
-title PUSH NOW - removes 146MB reel-6 and uploads to GitHub
+title PUSH NOW - upload site + videos to GitHub
 color 0A
 cd /d "%~dp0"
 
 echo.
-echo  STEP 1: Stop tracking reel-6.mp4 (146 MB - GitHub max 100 MB)
+echo  All your MP4s are under 100 MB - OK for GitHub.
+echo  reel-6 is now 1.39 MB (was 146 MB before).
 echo.
-git rm --cached -f public/portfolio/videos/reel-6.mp4 2>nul
 
-findstr /C:"reel-6.mp4" .gitignore >nul 2>&1
-if errorlevel 1 (
-  echo public/portfolio/videos/reel-6.mp4>> .gitignore
-)
+echo  STEP 1: Remove OLD huge reel-6 from git history (one-time, ~1 min)
+git filter-branch --force --index-filter "git rm --cached --ignore-unmatch public/portfolio/videos/reel-6.mp4" --prune-empty HEAD 2>nul
 
-git add .gitignore
+echo.
+echo  STEP 2: Add all files including new small reel-6
 git add -A
-git reset public/portfolio/videos/reel-6.mp4 2>nul
+git add public\portfolio\images public\portfolio\videos public\images 2>nul
 
 echo.
-echo  STEP 2: Commit (everything except reel-6)
-echo.
-git commit -m "Go live: portfolio images, logo, Calendly, LinkedIn (reel-6 excluded - compress under 95MB later)"
-if errorlevel 1 (
-  echo Amending last commit...
-  git add -A
-  git reset public/portfolio/videos/reel-6.mp4 2>nul
-  git commit --amend -m "Go live: portfolio images, logo, Calendly, LinkedIn (reel-6 excluded)"
-)
+echo  STEP 3: Commit
+git commit -m "Go live: portfolio images, videos, logo, Calendly, LinkedIn"
+if errorlevel 1 echo (no new changes or already committed)
 
 echo.
-echo  STEP 3: Remove reel-6 from git history if still inside old commits
-echo.
-git rev-list --objects --all 2>nul | findstr /I "reel-6.mp4" >nul
-if not errorlevel 1 (
-  echo Found reel-6 in history - cleaning (may take 1-2 min)...
-  git filter-branch --force --index-filter "git rm --cached --ignore-unmatch public/portfolio/videos/reel-6.mp4" --prune-empty HEAD
-)
-
-echo.
-echo  STEP 4: Push to GitHub
-echo.
+echo  STEP 4: Push
+git pull --rebase origin main 2>nul
 git push -u origin main
-if errorlevel 1 (
-  echo Normal push failed - trying force push (safe: your push never succeeded before)
-  git push -u origin main --force
-)
+if errorlevel 1 git push -u origin main --force
 
 if errorlevel 1 (
   color 0C
-  echo.
-  echo  FAILED - copy this window and send to Cursor chat
-  echo.
+  echo PUSH FAILED - send screenshot
 ) else (
-  color 0A
   echo.
-  echo  ============================================
-  echo   SUCCESS! GitHub has your site.
-  echo  ============================================
-  echo   Vercel deploys in 2-3 minutes:
-  echo   https://vercel.com/sales-7733s-projects/alphax-dezignerz-studio-v2/deployments
-  echo.
-  echo   Live: https://www.alphaxdezignerzstudio.com
-  echo   Hard refresh: Ctrl+Shift+R
-  echo.
+  echo  SUCCESS - Vercel deploys in 2-3 min
+  echo  https://www.alphaxdezignerzstudio.com  (Ctrl+Shift+R)
 )
 
+echo.
+echo Log saved to push-auto-log.txt when using push-auto.ps1
+echo Or run: PUSH-NOW-SILENT.bat (opens push window, no pause)
 pause

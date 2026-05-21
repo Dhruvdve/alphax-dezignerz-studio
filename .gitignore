@@ -36,9 +36,3 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-
-# GitHub rejects files over 100 MB — compress then remove this line
-public/portfolio/videos/reel-6.mp4
-
-# Auto-excluded oversized files:
-public/portfolio/videos/reel-6.mp4
