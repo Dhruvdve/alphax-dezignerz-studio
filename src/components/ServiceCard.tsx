@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { AnimatedArrow } from "@/components/AnimatedArrow";
 import { StaggerItem } from "@/components/Stagger";
 
 type ServiceCardProps = {
@@ -29,12 +29,9 @@ export function ServiceCard({ title, description, href }: ServiceCardProps) {
           />
           <div className="relative flex items-start justify-between gap-3">
             <h3 className="text-lg font-bold text-navy">{title}</h3>
-            <motion.span
-              className="shrink-0 text-navy opacity-70"
-              whileHover={reduce ? undefined : { x: 3, y: -3 }}
-            >
-              <ArrowUpRight className="h-5 w-5" />
-            </motion.span>
+            <span className="shrink-0 text-navy opacity-70">
+              <AnimatedArrow direction="upRight" className="h-5 w-5" trigger="group" />
+            </span>
           </div>
           <p className="relative mt-3 text-sm leading-relaxed text-navy/85">{description}</p>
         </Link>

@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { ArrowRight, LayoutGrid, PanelsTopLeft, PenTool, Video } from "lucide-react";
+import { LayoutGrid, PanelsTopLeft, PenTool, Video } from "lucide-react";
+import { AnimatedArrow, MotionHoverGroup } from "@/components/AnimatedArrow";
+import { MotionCategoryCard } from "@/components/MotionCategoryCard";
 import { categoryNavCopy } from "@/content/conversion";
 import { categoryQuickLinks } from "@/content/portfolio";
 import { useCategoryHash } from "@/lib/useCategoryHash";
@@ -71,41 +73,19 @@ export function CategoryQuickLinks({ variant = "hero" }: { variant?: "hero" | "i
               const active = activeHash === link.anchorId;
 
               return (
-                <Link
+                <MotionCategoryCard
                   key={link.anchorId}
                   href={href}
+                  active={active}
+                  isHero={isHero}
+                  label={link.label}
+                  Icon={Icon}
                   onClick={(e) => {
                     if (!canScrollHere) return;
                     e.preventDefault();
                     scrollToCategory(link.anchorId);
                   }}
-                  className={`group flex flex-col items-center gap-2 rounded-xl border px-3 py-4 text-center transition sm:px-4 sm:py-5 ${
-                    isHero
-                      ? active
-                        ? "border-white/40 bg-white/20 shadow-lg ring-2 ring-white/30"
-                        : "border-white/10 bg-white/5 hover:border-white/25 hover:bg-white/12"
-                      : active
-                        ? "border-navy bg-surfaceMuted shadow-soft ring-2 ring-navy/15"
-                        : "border-navy/10 bg-surfaceMuted/50 hover:border-navy/25 hover:bg-surfaceMuted"
-                  }`}
-                >
-                  <span
-                    className={`flex h-11 w-11 items-center justify-center rounded-xl border transition group-hover:scale-105 ${
-                      isHero
-                        ? "border-white/15 bg-white/10 text-white group-hover:bg-white/15"
-                        : "border-navy/10 bg-white text-navy shadow-sm"
-                    }`}
-                  >
-                    <Icon className="h-5 w-5" strokeWidth={2} />
-                  </span>
-                  <span
-                    className={`text-xs font-semibold leading-tight sm:text-sm ${
-                      isHero ? "text-white" : "text-navy"
-                    }`}
-                  >
-                    {link.label}
-                  </span>
-                </Link>
+                />
               );
             })}
           </div>
@@ -120,14 +100,16 @@ export function CategoryQuickLinks({ variant = "hero" }: { variant?: "hero" | "i
                 target?.scrollIntoView({ behavior: "smooth", block: "start" });
                 window.history.pushState(null, "", onHome ? "/#work" : "/portfolio");
               }}
-              className={`flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-semibold transition ${
+              className={`flex w-full items-center justify-center gap-1 rounded-xl py-3 text-sm font-semibold transition ${
                 isHero
                   ? "text-white/90 hover:bg-white/10"
                   : "text-navy hover:bg-surfaceMuted"
               }`}
             >
-              {categoryNavCopy.seeAllWork}
-              <ArrowRight className="h-4 w-4" />
+              <MotionHoverGroup className="gap-2">
+                {categoryNavCopy.seeAllWork}
+                <AnimatedArrow />
+              </MotionHoverGroup>
             </Link>
           </div>
         </div>

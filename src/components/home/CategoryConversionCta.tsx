@@ -1,5 +1,7 @@
+"use client";
+
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { AnimatedArrow, MotionHoverGroup } from "@/components/AnimatedArrow";
 import { PrimaryCta } from "@/components/PrimaryCta";
 
 type CategoryConversionCtaProps = {
@@ -20,10 +22,12 @@ export function CategoryConversionCta({
         <PrimaryCta className="btn-cta px-5 py-2.5 text-sm" />
         <Link
           href={portfolioHref}
-          className="inline-flex items-center justify-center gap-2 rounded-full border border-navy/15 bg-white px-5 py-2.5 text-sm font-semibold text-navy transition hover:border-navy/30"
+          className="inline-flex items-center justify-center rounded-full border border-navy/15 bg-white px-5 py-2.5 text-sm font-semibold text-navy transition hover:border-navy/30 hover:shadow-soft"
         >
-          {portfolioLabel}
-          <ArrowRight className="h-4 w-4" />
+          <MotionHoverGroup className="gap-2">
+            {portfolioLabel}
+            <AnimatedArrow />
+          </MotionHoverGroup>
         </Link>
       </div>
     </div>

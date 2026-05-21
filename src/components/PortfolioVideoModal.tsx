@@ -65,6 +65,7 @@ export function PortfolioVideoModal({
             poster={poster}
             title={title}
             aspectClass="aspect-[9/16] w-full max-h-[80vh]"
+            autoPlay
           />
         </div>
         <div className="mt-4 text-center text-white">

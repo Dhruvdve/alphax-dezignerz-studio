@@ -19,7 +19,11 @@ const jsonLd = {
     "@type": "Country",
     name: "India",
   },
-  sameAs: [siteConfig.instagramUrl, siteConfig.behanceUrl],
+  sameAs: [
+    siteConfig.instagramUrl,
+    siteConfig.linkedinUrl,
+    siteConfig.behanceUrl,
+  ],
 };
 
 export function JsonLd() {

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Calendar } from "lucide-react";
+import { Calendar, MessageCircle } from "lucide-react";
 import { discoveryBookingCta } from "@/content/cta";
 
 type BookingCtaProps = {
@@ -13,6 +13,9 @@ export function BookingCta({
   showIcon = true,
   onClick,
 }: BookingCtaProps) {
+  const isWhatsApp = discoveryBookingCta.href.includes("wa.me");
+  const Icon = isWhatsApp ? MessageCircle : Calendar;
+
   return (
     <Link
       href={discoveryBookingCta.href}
@@ -21,7 +24,7 @@ export function BookingCta({
       className={className}
       onClick={onClick}
     >
-      {showIcon ? <Calendar className="h-4 w-4 shrink-0" aria-hidden /> : null}
+      {showIcon ? <Icon className="h-4 w-4 shrink-0" aria-hidden /> : null}
       {discoveryBookingCta.label}
     </Link>
   );

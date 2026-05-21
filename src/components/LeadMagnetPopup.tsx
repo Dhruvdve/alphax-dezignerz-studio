@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { X } from "lucide-react";
 import { leadMagnet } from "@/content/cta";
 import { PrimaryCta } from "@/components/PrimaryCta";
 
 const STORAGE_KEY = "alphax-lead-popup-dismissed";
+/** Wait before exit-intent can fire (avoids instant popup on accidental top-edge hover) */
+const MIN_MS_ON_PAGE = 8_000;
 
 export function LeadMagnetPopup() {
   const [open, setOpen] = useState(false);
@@ -17,25 +19,41 @@ export function LeadMagnetPopup() {
     if (typeof window === "undefined") return;
     if (sessionStorage.getItem(STORAGE_KEY)) return;
 
-    const onLeave = (e: MouseEvent) => {
-      if (e.clientY <= 8) {
-        setOpen(true);
-        sessionStorage.setItem(STORAGE_KEY, "1");
+    const readyAt = Date.now() + MIN_MS_ON_PAGE;
+    let shown = false;
+
+    const showOnce = () => {
+      if (shown || sessionStorage.getItem(STORAGE_KEY)) return;
+      if (Date.now() < readyAt) return;
+      shown = true;
+      setOpen(true);
+      sessionStorage.setItem(STORAGE_KEY, "1");
+    };
+
+    /** Mouse leaves viewport toward browser chrome / close tab */
+    const onExitIntent = (e: MouseEvent) => {
+      const leavingTop = e.clientY <= 0;
+      const noRelatedTarget = !e.relatedTarget;
+      if (leavingTop && noRelatedTarget) {
+        showOnce();
       }
     };
 
-    const timer = window.setTimeout(() => {
-      if (!sessionStorage.getItem(STORAGE_KEY)) setOpen(true);
-    }, 45000);
+    document.addEventListener("mouseout", onExitIntent, { passive: true });
 
-    document.addEventListener("mouseout", onLeave);
     return () => {
-      document.removeEventListener("mouseout", onLeave);
-      window.clearTimeout(timer);
+      document.removeEventListener("mouseout", onExitIntent);
     };
   }, []);
 
-  async function handleSubmit(e: React.FormEvent) {
+  function dismiss() {
+    setOpen(false);
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem(STORAGE_KEY, "1");
+    }
+  }
+
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setStatus("loading");
     setMessage("");
@@ -64,11 +82,15 @@ export function LeadMagnetPopup() {
       role="dialog"
       aria-modal="true"
       aria-labelledby="lead-magnet-title"
+      onClick={dismiss}
     >
-      <div className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-card sm:p-8">
+      <div
+        className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-card sm:p-8"
+        onClick={(e) => e.stopPropagation()}
+      >
         <button
           type="button"
-          onClick={() => setOpen(false)}
+          onClick={dismiss}
           className="absolute right-4 top-4 rounded-lg p-1 text-navy/60 hover:bg-surfaceMuted hover:text-navy"
           aria-label="Close"
         >

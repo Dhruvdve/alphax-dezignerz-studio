@@ -10,6 +10,7 @@ type SiteVideoProps = {
   fallbackSrc?: string;
   aspectClass?: string;
   className?: string;
+  autoPlay?: boolean;
 };
 
 export function SiteVideo({
@@ -19,6 +20,7 @@ export function SiteVideo({
   fallbackSrc,
   aspectClass = "aspect-[9/16]",
   className = "",
+  autoPlay = false,
 }: SiteVideoProps) {
   const [activeSrc, setActiveSrc] = useState(src);
 
@@ -29,8 +31,9 @@ export function SiteVideo({
         src={activeSrc}
         poster={poster}
         controls
+        autoPlay={autoPlay}
         playsInline
-        preload="metadata"
+        preload={autoPlay ? "auto" : "metadata"}
         className="h-full w-full object-cover"
         title={title}
         onError={() => {

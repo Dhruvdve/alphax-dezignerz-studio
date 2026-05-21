@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { Instagram, Palette, Mail, Phone } from "lucide-react";
+import { Instagram, Linkedin, Palette, Mail, Phone } from "lucide-react";
 import { siteConfig } from "@/content/site";
 
 export function SiteFooter() {
@@ -36,7 +35,7 @@ export function SiteFooter() {
             {siteConfig.phoneDisplay}
           </a>
           <div className="flex flex-wrap gap-4 pt-1">
-            <Link
+            <a
               href={siteConfig.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -44,8 +43,17 @@ export function SiteFooter() {
             >
               <Instagram className="h-4 w-4" />
               Instagram
-            </Link>
-            <Link
+            </a>
+            <a
+              href={siteConfig.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-muted transition hover:text-navy"
+            >
+              <Linkedin className="h-4 w-4" />
+              LinkedIn
+            </a>
+            <a
               href={siteConfig.behanceUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -53,7 +61,7 @@ export function SiteFooter() {
             >
               <Palette className="h-4 w-4" />
               Behance
-            </Link>
+            </a>
           </div>
         </div>
       </div>

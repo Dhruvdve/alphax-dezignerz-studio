@@ -10,20 +10,40 @@ export const secondaryCta = {
   href: "/portfolio",
 } as const;
 
+/** Works without Calendly — opens WhatsApp to book a discovery call */
+export const discoveryWhatsAppHref =
+  "https://wa.me/917383552512?text=Hi%20AlphaX,%20I%27d%20like%20to%20book%20a%2015-minute%20discovery%20call";
+
+const calendlyFromEnv = process.env.NEXT_PUBLIC_CALENDLY_URL?.trim() ?? "";
+/** Live event from your Calendly account (Dhruvdev Patel) */
+export const defaultCalendlyDiscoveryUrl =
+  "https://calendly.com/alphaxdezignerzstudio-sales/30min";
+
+const brokenCalendlyDefaults = [
+  "calendly.com/your-handle",
+  "calendly.com/alphax-dezignerz/15min-discovery",
+];
+
+function resolveDiscoveryHref(): string {
+  if (!calendlyFromEnv) return defaultCalendlyDiscoveryUrl;
+  const lower = calendlyFromEnv.toLowerCase();
+  if (brokenCalendlyDefaults.some((bad) => lower.includes(bad))) {
+    return defaultCalendlyDiscoveryUrl;
+  }
+  return calendlyFromEnv;
+}
+
 /**
- * Set `NEXT_PUBLIC_CALENDLY_URL` in Vercel to your Calendly or Google Calendar booking link.
- * Example: https://calendly.com/your-handle/15min
+ * Override with `NEXT_PUBLIC_CALENDLY_URL` in Vercel if you change the event link.
  */
 export const discoveryBookingCta = {
-  label: "Book a 15-min Discovery Call →",
-  href:
-    process.env.NEXT_PUBLIC_CALENDLY_URL?.trim() ||
-    "https://calendly.com/alphax-dezignerz/15min-discovery",
+  label: "Book a 30-min Discovery Call →",
+  href: resolveDiscoveryHref(),
 } as const;
 
 export const scarcityBanner = {
   text: "Only 2 retainer slots open for June 2026 — book a discovery call today →",
-  href: primaryCta.href,
+  href: discoveryBookingCta.href,
 } as const;
 
 export const leadMagnet = {

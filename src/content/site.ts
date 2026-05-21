@@ -12,6 +12,7 @@ export const siteConfig = {
   phoneTel: "+917383552512",
   whatsappUrl: "https://wa.me/917383552512",
   instagramUrl: "https://instagram.com/alphax_travel_dezignerz",
+  linkedinUrl: "https://www.linkedin.com/company/105700482",
   behanceUrl: "https://www.behance.net/dhruvdevpatel1",
   address: {
     line1: "Nirman House, 107, Ashram Rd, Navrangpura",
@@ -21,6 +22,9 @@ export const siteConfig = {
   },
   mapEmbedQuery:
     "Nirman+House,+107,+Ashram+Rd,+Navrangpura,+Ahmedabad,+380009",
+  /** Header monogram — save your file as `public/images/alphax-logo.svg` */
+  brandLogoSrc: "/images/alphax-logo.svg",
+  /** Browser tab — optional: `public/favicon.ico` */
 } as const;
 
 export const marqueeClients = [

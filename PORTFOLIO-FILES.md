@@ -4,7 +4,9 @@ Put files inside your project folder:
 
 `C:\Users\intel\alphax-dezignerz-studio\public\portfolio\`
 
-The website loads them automatically when the **file name matches exactly** (case-sensitive on some hosts).
+The website loads them automatically when the **base name matches exactly** (case-sensitive on some hosts).
+
+**JPG or PNG:** You can mix formats. Use the same base name — e.g. `sm-post-1.jpg` *or* `sm-post-1.png` (not both needed). The site tries `.jpg` first, then `.png`.
 
 ---
 
@@ -19,7 +21,7 @@ The website loads them automatically when the **file name matches exactly** (cas
 
 **Videos:** MP4 only (not YouTube links). Keep files under ~30 MB each for fast loading if possible.
 
-**Images:** JPG recommended. If you use WEBP, rename in the list below to `.webp` and tell your developer to change one line in code.
+**Images:** JPG or PNG (mix is fine). JPG is smaller for photos; PNG is best for logos with transparency. WEBP is not auto-detected yet.
 
 ---
 
@@ -117,11 +119,11 @@ Replace `{logo-id}` with `logo-1` … `logo-6`.
 
 | File | What to show on the case study page |
 |------|-------------------------------------|
-| `reject-1.jpg` | First rejected concept |
-| `reject-2.jpg` | Second rejected concept |
-| `reject-3.jpg` | Third (only if you use 3 rejects — logo-2, 4, 5, 6 use 2) |
-| `final.jpg` | Approved logo mark |
-| `applied.jpg` | Brand in use (mockup / board — can match grid hover) |
+| `reject-1.jpg` or `.png` | First rejected concept |
+| `reject-2.jpg` or `.png` | Second rejected concept |
+| `reject-3.jpg` or `.png` | Third (only if you use 3 rejects — logo-2, 4, 5, 6 use 2) |
+| `final.jpg` or `.png` | Approved logo mark |
+| `applied.jpg` or `.png` | Brand in use (mockup / board — can match grid hover) |
 
 **Example for Tripsdoc (logo 1):**
 

@@ -115,14 +115,8 @@ export const retainerComparison = {
   ],
 } as const;
 
-export const homeWorkShowcase = [
-  { src: "/portfolio/work-1.jpg", title: "Ladakh Reel Series", category: "Reels & Motion" },
-  { src: "/portfolio/work-2.jpg", title: "Kashmir Carousel", category: "Carousels" },
-  { src: "/portfolio/work-3.jpg", title: "DMC Social Post", category: "Social Media" },
-  { src: "/portfolio/work-4.jpg", title: "Tour Operator Brand", category: "Logo & Branding" },
-  { src: "/portfolio/work-5.jpg", title: "Honeymoon Itinerary", category: "Print & Marketing" },
-  { src: "/portfolio/work-6.jpg", title: "Adventure Trip Reel", category: "Reels & Motion" },
-] as const;
+/** @deprecated Homepage masonry uses `homeMasonryShowcase` in portfolio.ts */
+export const homeWorkShowcase = [] as const;
 
 export const bentoFeatures = [
   {

@@ -221,12 +221,18 @@ export function getPortfolioDemoFallback(frame: FrameKind, index: number): strin
   return n === 1 ? "/portfolio/placeholder-feed.svg" : `/portfolio/placeholder-feed-${n}.svg`;
 }
 
-/** Your file: public/portfolio/images/{id}.jpg — see PORTFOLIO-FILES.md */
+/**
+ * Your file: `public/portfolio/images/{id}.jpg` or `{id}.png` (same base name).
+ * Reels + posts default to .png (your uploads); others default to .jpg.
+ */
 function localImageSrc(id: string): string {
+  if (id.startsWith("reel-") || id.startsWith("sm-post-")) {
+    return `/portfolio/images/${id}.png`;
+  }
   return `/portfolio/images/${id}.jpg`;
 }
 
-/** Logo hover: `public/portfolio/images/logo-1-hover.jpg` etc. */
+/** Logo hover: `logo-1-hover.jpg` or `logo-1-hover.png` */
 function localLogoHoverSrc(id: string): string {
   return `/portfolio/images/${id}-hover.jpg`;
 }
@@ -284,6 +290,54 @@ export function getHomePreviewItems(count = 6) {
   return portfolioItems.slice(0, count);
 }
 
+/** Homepage masonry grid — must match `public/portfolio/images/{id}.jpg|png` or reel `.mp4` */
+export const homeMasonryShowcase = [
+  {
+    id: "flyer-1",
+    title: "Honeymoon Itinerary",
+    category: "Print & Marketing",
+    aspect: "feed" as const,
+  },
+  {
+    id: "sm-carousel-1",
+    title: "Kashmir Carousel",
+    category: "Carousels",
+    aspect: "tall" as const,
+  },
+  {
+    id: "sm-post-2",
+    title: "DMC Social Post",
+    category: "Social Media",
+    aspect: "feed" as const,
+  },
+  {
+    id: "reel-1",
+    title: "Ladakh Reel Series",
+    category: "Reels & Motion",
+    aspect: "tall" as const,
+  },
+  {
+    id: "flyer-2",
+    title: "Early Bird Offer",
+    category: "Print & Marketing",
+    aspect: "feed" as const,
+  },
+  {
+    id: "reel-2",
+    title: "Adventure Trip Reel",
+    category: "Reels & Motion",
+    aspect: "feed" as const,
+  },
+] as const;
+
+export function getHomeMasonryImageSrc(id: string): string {
+  return localImageSrc(id);
+}
+
+export function getPortfolioItemById(id: string): PortfolioItem | undefined {
+  return portfolioItems.find((p) => p.id === id);
+}
+
 /** Homepage proof section — grouped by conversion story */
 export function getCategoryTotalCount(
   key: keyof typeof portfolioCategorySections,
@@ -294,15 +348,42 @@ export function getCategoryTotalCount(
   return getItemsByCategory("logos-branding").length;
 }
 
+/** Prefer slots you've uploaded first (jpg/png in `public/portfolio/images/`) */
+const categoryPreviewOrder: Record<
+  keyof typeof portfolioCategorySections,
+  string[]
+> = {
+  reels: ["reel-1", "reel-2", "reel-3", "reel-4"],
+  social: ["sm-post-2", "sm-post-1", "sm-post-3", "sm-post-4"],
+  carousels: ["sm-carousel-1", "sm-carousel-2", "sm-carousel-3", "sm-carousel-4"],
+  branding: ["logo-2", "logo-3", "logo-1", "logo-4"],
+};
+
 /** 3–4 thumbnails for homepage category cards */
 export function getCategoryPreviewItems(
   key: keyof typeof portfolioCategorySections,
   limit = 4,
 ): PortfolioItem[] {
-  if (key === "reels") return getItemsByCategory("reels-motion").slice(0, limit);
-  if (key === "social") return getSocialPosts().slice(0, limit);
-  if (key === "carousels") return getSocialCarousels().slice(0, limit);
-  return getItemsByCategory("logos-branding").slice(0, limit);
+  const ordered = categoryPreviewOrder[key]
+    .map((id) => getPortfolioItemById(id))
+    .filter((item): item is PortfolioItem => Boolean(item));
+  if (ordered.length >= limit) return ordered.slice(0, limit);
+
+  const fallback =
+    key === "reels"
+      ? getItemsByCategory("reels-motion")
+      : key === "social"
+        ? getSocialPosts()
+        : key === "carousels"
+          ? getSocialCarousels()
+          : getItemsByCategory("logos-branding");
+
+  const seen = new Set(ordered.map((p) => p.id));
+  for (const item of fallback) {
+    if (ordered.length >= limit) break;
+    if (!seen.has(item.id)) ordered.push(item);
+  }
+  return ordered.slice(0, limit);
 }
 
 export function getHomeProofGroups() {

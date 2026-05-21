@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { onPortfolioImageError } from "@/lib/portfolio-image";
 
 type CaseStudyImageProps = {
   src: string;
@@ -30,9 +31,7 @@ export function CaseStudyImage({
         className="h-full w-full object-cover"
         loading="lazy"
         decoding="async"
-        onError={() => {
-          if (active !== fallbackSrc) setActive(fallbackSrc);
-        }}
+        onError={() => onPortfolioImageError(active, fallbackSrc, setActive)}
       />
     </div>
   );

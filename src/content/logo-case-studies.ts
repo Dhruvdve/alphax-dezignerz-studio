@@ -1,6 +1,6 @@
 /**
  * Logo case studies — edit story text here.
- * Images: `public/portfolio/logos/{id}/` — see PORTFOLIO-FILES.md
+ * Images: `public/portfolio/logos/{id}/` — `.jpg` or `.png` per file (see PORTFOLIO-FILES.md)
  */
 
 export type LogoRejectConcept = {

@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Sparkles, Star } from "lucide-react";
+import { Sparkles, Star } from "lucide-react";
+import { AnimatedArrow, MotionHoverGroup } from "@/components/AnimatedArrow";
 import { heroPills } from "@/content/experience";
 import { heroCtas, heroSubline, studioSnapshot } from "@/content/conversion";
 import { siteConfig } from "@/content/site";
@@ -93,10 +94,12 @@ export function HeroAdvanced() {
             <BookingCta className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/10 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white/15" />
             <Link
               href={heroCtas.secondary.href}
-              className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white/90 transition hover:text-white"
+              className="inline-flex items-center justify-center rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white/90 transition hover:border-white/35 hover:bg-white/5 hover:text-white"
             >
-              {heroCtas.secondary.label}
-              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
+              <MotionHoverGroup className="gap-2">
+                {heroCtas.secondary.label}
+                <AnimatedArrow />
+              </MotionHoverGroup>
             </Link>
           </motion.div>
         </div>

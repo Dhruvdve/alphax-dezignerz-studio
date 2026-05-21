@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { AnimatedArrow, MotionHoverGroup } from "@/components/AnimatedArrow";
 import {
   getCategoryTotalCount,
   getCategoryPreviewItems,
@@ -22,6 +22,7 @@ import { CategoryConversionCta } from "@/components/home/CategoryConversionCta";
 import { FadeIn } from "@/components/FadeIn";
 import { StaggerGroup, StaggerItem } from "@/components/Stagger";
 import { useCategoryHash } from "@/lib/useCategoryHash";
+import { prefetchPortfolioItems } from "@/lib/prefetch-portfolio-images";
 
 const sectionKeys = ["reels", "social", "carousels", "branding"] as const;
 
@@ -53,6 +54,16 @@ function CategoryTeaserGrid({
 }: {
   onSelect: (anchorId: string) => void;
 }) {
+  const allPreviewItems = useMemo(
+    () =>
+      sectionKeys.flatMap((key) => getCategoryPreviewItems(key, 4)),
+    [],
+  );
+
+  useEffect(() => {
+    prefetchPortfolioItems(allPreviewItems);
+  }, [allPreviewItems]);
+
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {categoryQuickLinks.map((link) => {
@@ -74,9 +85,11 @@ function CategoryTeaserGrid({
             <p className="mt-3 flex-1 text-sm leading-relaxed text-navy/75">
               {section.subtext}
             </p>
-            <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-navy group-hover:gap-2">
-              View {total} projects
-              <ArrowRight className="h-4 w-4" />
+            <p className="mt-4 inline-flex items-center text-sm font-semibold text-navy">
+              <MotionHoverGroup className="gap-1.5">
+                View {total} projects
+                <AnimatedArrow />
+              </MotionHoverGroup>
             </p>
           </button>
         );
@@ -109,7 +122,7 @@ function ActiveCategoryPreview({ activeKey }: { activeKey: SectionKey }) {
           </p>
         ) : null}
         <p className="mt-3 text-sm text-navy/55">
-          Showing {isReels ? "3 reels" : `${items.length} of ${total}`} — view the rest in portfolio.
+          Showing {isReels ? "6 reels" : `${items.length} of ${total}`} — hover to preview (video loads on hover), tap for full screen.
         </p>
       </div>
 
