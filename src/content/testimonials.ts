@@ -3,7 +3,7 @@ export const testimonials = [
     quote:
       "AlphaX turned our feed into a booking engine. Crisp posts, fast turnarounds, and they understand DMC language.",
     author: "Predestinations DMC",
-    role: "B2B travel partner",
+    role: "B2B travel partner · Gujarat",
   },
   {
     quote:
@@ -13,8 +13,14 @@ export const testimonials = [
   },
   {
     quote:
-      "Scripts + design in one place. Reels stopped feeling random and started converting inquiries.",
+      "Scripts + design in one place. Reels stopped feeling random and started converting inquiries every week.",
     author: "Holiday Enroute",
     role: "Tour operator",
+  },
+  {
+    quote:
+      "We needed consistency without hiring in-house. AlphaX ships our calendar on time — posts, carousels, and ad creatives.",
+    author: "Book and Explore",
+    role: "Travel agency",
   },
 ] as const;

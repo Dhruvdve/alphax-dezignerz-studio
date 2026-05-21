@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920">
+  <rect width="1080" height="1920" fill="#142f4a"/>
+  <rect x="40" y="160" width="1000" height="1400" rx="36" fill="#1A3B5D"/>
+  <polygon points="460,900 660,1000 460,1100" fill="#fff" opacity="0.9"/>
+  <circle cx="540" cy="320" r="100" fill="#C5226F" opacity="0.45"/>
+  <rect x="100" y="1620" width="560" height="48" rx="10" fill="#fff" opacity="0.2"/>
+  <text x="540" y="1820" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="42" font-weight="bold" opacity="0.55">1080 x 1920</text>
+  <text x="540" y="1880" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="28" opacity="0.4">Demo reel</text>
+</svg>

@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "AlphaX Dezignerz Studio",
-  tagline: "Design That Drives Bookings",
+  tagline: "Turn Your Travel Reels into Booking Machines",
   description:
-    "Premium social media design and branding for Indian travel agencies. Based in Ahmedabad, Gujarat.",
+    "Premium social media design, branding, and reels for Indian travel agencies. Trusted by 15+ travel brands across India.",
   url: "https://alphaxdezignerzstudio.com",
   owner: "Dhruvdev Patel",
   ownerTitle: "Founder & Creative Director",
@@ -24,11 +24,42 @@ export const siteConfig = {
 } as const;
 
 export const marqueeClients = [
-  "Tripsdoc",
-  "Predestinations DMC",
-  "Holiday Enroute",
-  "Flying Passport Tours",
-  "Book and Explore",
+  {
+    name: "Yatri Holidays",
+    initials: "YH",
+    logoSrc: "/clients/yatri-holidays.png",
+    logoFallback: "/portfolio/images/sm-post-1.jpg",
+  },
+  {
+    name: "Tripsdoc",
+    initials: "TR",
+    logoSrc: "/clients/tripsdoc.png",
+    logoFallback: "/portfolio/images/logo-1.jpg",
+  },
+  {
+    name: "Predestinations DMC",
+    initials: "PD",
+    logoSrc: "/clients/predestinations.png",
+    logoFallback: "/portfolio/images/logo-3.jpg",
+  },
+  {
+    name: "Holiday Enroute",
+    initials: "HE",
+    logoSrc: "/clients/holiday-enroute.png",
+    logoFallback: "/portfolio/images/logo-2.jpg",
+  },
+  {
+    name: "Flying Passport Tours",
+    initials: "FP",
+    logoSrc: "/clients/flying-passport.png",
+    logoFallback: "/portfolio/images/sm-post-2.jpg",
+  },
+  {
+    name: "Book and Explore",
+    initials: "BE",
+    logoSrc: "/clients/book-and-explore.png",
+    logoFallback: "/portfolio/images/logo-4.jpg",
+  },
 ] as const;
 
 export const stats = [
@@ -36,6 +67,14 @@ export const stats = [
   { label: "Posts Delivered", value: "500+" },
   { label: "Google Rating", value: "4.9★" },
   { label: "Years Experience", value: "2+" },
+] as const;
+
+/** Animated counters on the homepage (keep labels aligned with `stats`). */
+export const statsForHome = [
+  { label: "Clients Served", kind: "count" as const, end: 10, suffix: "+" },
+  { label: "Posts Delivered", kind: "count" as const, end: 500, suffix: "+" },
+  { label: "Google Rating", kind: "text" as const, value: "4.9★" },
+  { label: "Years Experience", kind: "count" as const, end: 2, suffix: "+" },
 ] as const;
 
 export const homeServiceOverview = [

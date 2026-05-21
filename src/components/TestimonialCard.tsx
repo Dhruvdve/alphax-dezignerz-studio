@@ -16,7 +16,7 @@ export function TestimonialCard({ quote, author, role, delay = 0 }: TestimonialC
         </blockquote>
         <figcaption className="mt-6 text-sm">
           <p className="font-semibold text-navy">{author}</p>
-          <p className="text-muted">{role}</p>
+          <p className="text-navy/75">{role}</p>
         </figcaption>
       </figure>
     </FadeIn>

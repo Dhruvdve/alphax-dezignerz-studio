@@ -63,7 +63,7 @@ export function ContactForm() {
             name="name"
             required
             autoComplete="name"
-            className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-accent"
+            className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-navy"
             value={form.name}
             onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
           />
@@ -76,7 +76,7 @@ export function ContactForm() {
             id="company"
             name="company"
             autoComplete="organization"
-            className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-accent"
+            className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-navy"
             value={form.company}
             onChange={(e) => setForm((f) => ({ ...f, company: e.target.value }))}
           />
@@ -94,7 +94,7 @@ export function ContactForm() {
             type="email"
             required
             autoComplete="email"
-            className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-accent"
+            className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-navy"
             value={form.email}
             onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
           />
@@ -108,7 +108,7 @@ export function ContactForm() {
             name="phone"
             type="tel"
             autoComplete="tel"
-            className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-accent"
+            className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-navy"
             value={form.phone}
             onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
           />
@@ -123,7 +123,7 @@ export function ContactForm() {
           id="service"
           name="service"
           required
-          className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-accent"
+          className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-navy"
           value={form.service}
           onChange={(e) => setForm((f) => ({ ...f, service: e.target.value }))}
         >
@@ -148,7 +148,7 @@ export function ContactForm() {
           name="message"
           required
           rows={4}
-          className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-accent"
+          className="mt-1 w-full rounded-xl border border-navy/10 bg-surface px-3 py-2.5 text-sm outline-none transition focus:border-navy"
           value={form.message}
           onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
         />
@@ -181,7 +181,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+        className="btn-cta w-full gap-2 sm:w-auto"
       >
         {status === "loading" ? (
           <>

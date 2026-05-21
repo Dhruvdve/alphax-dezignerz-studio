@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <rect width="1080" height="1080" fill="#F4F6F8"/>
+  <rect x="120" y="120" width="840" height="840" rx="40" fill="#fff" stroke="#1A3B5D" stroke-width="6"/>
+  <text x="540" y="500" text-anchor="middle" fill="#1A3B5D" font-family="Arial,sans-serif" font-size="140" font-weight="bold">AX</text>
+  <text x="540" y="600" text-anchor="middle" fill="#C5226F" font-family="Arial,sans-serif" font-size="36" font-weight="bold">BRAND BOARD</text>
+  <text x="540" y="960" text-anchor="middle" fill="#1A3B5D" font-family="Arial,sans-serif" font-size="28" opacity="0.45">Demo logo</text>
+</svg>

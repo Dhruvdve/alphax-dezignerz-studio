@@ -4,10 +4,34 @@
 
 :root {
   color-scheme: light;
+  /* Accent #C5226F — primary CTA fill only */
+  --brand-primary: #1a3b5d;
+  --brand-accent: #c5226f;
+  --brand-surface: #ffffff;
+}
+
+@layer components {
+  /** Eyebrow chip — navy on white (not brand accent) */
+  .label-accent {
+    @apply mb-3 inline-flex w-fit items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-navy shadow-sm;
+  }
+
+  /** Primary CTA: #C5226F background, white label */
+  .btn-cta {
+    @apply inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-accent/90 hover:shadow-card active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70;
+  }
+
+  .card-interactive {
+    @apply transition duration-300 ease-out hover:-translate-y-1 hover:shadow-card;
+  }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+[id] {
+  scroll-margin-top: 7rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -15,7 +39,10 @@ html {
     scroll-behavior: auto;
   }
 
-  .animate-marquee {
+  .animate-marquee,
+  .animate-float,
+  .animate-shimmer,
+  .animate-wa-pulse {
     animation: none !important;
   }
 }
@@ -29,5 +56,5 @@ body {
 }
 
 .focus-ring {
-  @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-navy;
+  @apply outline-none ring-2 ring-navy ring-offset-2 ring-offset-white;
 }

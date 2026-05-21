@@ -5,7 +5,7 @@ type SectionVariant = "navy" | "white" | "surface";
 const variantClass: Record<SectionVariant, string> = {
   navy: "bg-navy text-white",
   white: "bg-white text-navy",
-  surface: "bg-surface text-navy",
+  surface: "bg-surfaceMuted text-navy",
 };
 
 type SectionProps = {
