@@ -1,6 +1,19 @@
 @echo off
 cd /d "%~dp0"
-echo Pushing to GitHub: Dhruvdve/alphax-dezignerz-studio
+echo.
+echo IMPORTANT: This folder must contain package.json AND src\app\
+echo Current folder: %CD%
+echo.
+
+if not exist "src\app" (
+  echo ERROR: src\app not found here.
+  echo Open the INNER project folder, not the parent wrapper.
+  echo Expected: C:\Users\intel\alphax-dezignerz-studio
+  pause
+  exit /b 1
+)
+
+echo Pushing to: https://github.com/Dhruvdve/alphax-dezignerz-studio
 echo.
 
 if not exist .git (
@@ -12,17 +25,15 @@ if not exist .git (
 git add -A
 git status
 echo.
-git commit -m "Update site: FAQ, testimonials, portfolio, booking, SEO" 2>nul
-if errorlevel 1 echo No new changes to commit, or commit skipped.
+git commit -m "Update site: latest FAQ, testimonials, portfolio, booking, SEO"
 echo.
+git pull origin main --rebase 2>nul
 git push -u origin main
 echo.
 if errorlevel 1 (
-  echo PUSH FAILED. Common fixes:
-  echo 1. Create repo at https://github.com/new named alphax-dezignerz-studio
-  echo 2. Sign in: gh auth login   OR use GitHub Desktop
-  echo 3. Use Personal Access Token as password when git asks
+  echo PUSH FAILED - try: gh auth login
 ) else (
-  echo SUCCESS. Vercel will redeploy in 1-3 minutes.
+  echo SUCCESS - Vercel will redeploy in 1-3 min
+  echo On Vercel set Root Directory to "." if files are at repo root after this push
 )
 pause
