@@ -22,7 +22,7 @@ export const metadataBase = new URL(siteConfig.url);
 export const metadata: Metadata = {
   title: defaultSeo.title,
   description: defaultSeo.description,
-  keywords: [...defaultSeo.keywords],
+  keywords: [...defaultSeo.keywords] as string[],
   authors: [{ name: siteConfig.owner, url: siteConfig.behanceUrl }],
   creator: siteConfig.owner,
   openGraph: {

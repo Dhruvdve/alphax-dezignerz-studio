@@ -99,3 +99,31 @@ export const finalCta = {
 /** Legacy aliases */
 export const ctaLeadMagnetLabel = primaryCta.label;
 export const ctaLeadMagnetLabelShort = "Free sample";
+
+export const problemSolutionSection = {
+  eyebrow: "The AlphaX difference",
+  headline: "Stop settling for generic. Start converting.",
+  intro:
+    "Most travel brands are losing bookings to poor design and inconsistent content. AlphaX fixes that with a travel-first system built to convert.",
+  tagline: "Your brand deserves content that works as hard as you do.",
+  oldWay: {
+    label: "The old way",
+    points: [
+      "Generic freelancers who don't understand DMC workflows",
+      "Inconsistent posting — weeks of silence, then a burst",
+      "No strategy — just pretty pictures that don't convert",
+      "Chasing freelancers for revisions and missed deadlines",
+      "Starting from scratch every season",
+    ],
+  },
+  alphaXWay: {
+    label: "The AlphaX way",
+    points: [
+      "Travel-only studio — we speak fluent itinerary and seat-selling",
+      "Weekly batches delivered on schedule, every month",
+      "Content built around your offers, routes, and booking triggers",
+      "One point of contact, fast WhatsApp replies, zero chasing",
+      "Brand templates and automation you own and reuse",
+    ],
+  },
+} as const;

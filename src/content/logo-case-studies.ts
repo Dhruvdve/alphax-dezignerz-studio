@@ -44,7 +44,7 @@ export function logoStudyImage(logoId: string, file: string): string {
 function buildStudy(
   id: string,
   clientName: string,
-  data: Omit<LogoCaseStudy, "id" | "clientName" | "final" | "rejects"> & {
+  data: Omit<LogoCaseStudy, "id" | "clientName" | "final" | "rejects" | "appliedImageSrc"> & {
     rejects: Omit<LogoRejectConcept, "imageSrc" | "id">[];
     final: Omit<LogoCaseStudy["final"], "imageSrc">;
   },

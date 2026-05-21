@@ -21,7 +21,7 @@ export function pageMetadata(
     ...overrides,
     title,
     description: overrides?.description ?? defaultSeo.description,
-    keywords: overrides?.keywords ?? defaultSeo.keywords,
+    keywords: (overrides?.keywords ?? defaultSeo.keywords) as string[],
     openGraph: {
       type: "website",
       locale: "en_IN",
