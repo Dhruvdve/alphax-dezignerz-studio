@@ -248,7 +248,6 @@ function buildItems(
 ): PortfolioItem[] {
   return Array.from({ length: count }, (_, i) => {
     const n = i + 1;
-    const frame = frameForCategory(category);
     const id = `${idPrefix}-${n}`;
     return {
       id,

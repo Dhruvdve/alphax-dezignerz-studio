@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { FadeIn } from "@/components/FadeIn";
 import { BrandIdentityTierCards } from "@/components/BrandIdentityTierCards";
 import { ProjectPricingList } from "@/components/ProjectPricingList";

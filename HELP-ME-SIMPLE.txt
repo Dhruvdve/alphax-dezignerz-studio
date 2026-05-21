@@ -1,0 +1,64 @@
+ALPHAX WEBSITE - SIMPLE HELP (read this)
+
+You only need to do 2 things total.
+
+
+THING 1 - ON YOUR COMPUTER (one time per update)
+------------------------------------------------
+1. Open folder:  C:\Users\intel\alphax-dezignerz-studio
+2. Double-click:  START-HERE.bat
+3. Wait until it says SUCCESS
+4. A browser tab opens to Vercel - continue below
+
+
+THING 2 - ON VERCEL WEBSITE
+------------------------------------------------
+1. Go to: https://vercel.com/dashboard
+2. Sign in (same email as GitHub if you can)
+3. Click your project (alphax-dezignerz-studio or similar)
+
+   IF YOU SEE A PROJECT:
+   - Click "Deployments"
+   - Wait for green word "Ready" (1-3 minutes)
+   - Click "Visit" button
+   - That is your live website!
+
+   IF YOU DO NOT SEE A PROJECT:
+   - Click "Add New..." then "Project"
+   - Find: alphax-dezignerz-studio
+   - Click Import
+   - Where it says Root Directory, pick:
+     "alphax-dezignerz-studio (root)" with the N icon
+   - Click Deploy
+   - Wait for Ready, then Visit
+
+   IF YOU SEE ERROR 404 ON OLD LINK:
+   - Do NOT use old bookmarks
+   - Only use the Visit button from newest Ready deployment
+
+
+WHEN WEBSITE LOOKS WRONG (old version)
+------------------------------------------------
+1. Run START-HERE.bat again
+2. On Vercel: Deployments - three dots (...) - Redeploy
+3. Press Ctrl+Shift+R on the website page
+
+
+STUCK? SEND SCREENSHOT OF:
+------------------------------------------------
+- The black window after START-HERE.bat
+- OR Vercel Deployments page (showing Ready or Error)
+
+
+YOUR LINKS
+------------------------------------------------
+GitHub:  https://github.com/Dhruvdve/alphax-dezignerz-studio
+Vercel:  https://vercel.com/dashboard
+WhatsApp on site already works - no setup needed for that.
+
+
+YOU DO NOT NEED TO:
+------------------------------------------------
+- Understand git
+- Write code
+- Use Command Prompt manually (unless START-HERE.bat fails)

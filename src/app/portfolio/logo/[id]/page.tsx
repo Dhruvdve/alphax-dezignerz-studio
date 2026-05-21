@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LogoCaseStudyView } from "@/components/LogoCaseStudyView";
-import { Section } from "@/components/Section";
 import {
   getLogoCaseStudy,
   logoCaseStudyIds,
