@@ -231,14 +231,6 @@ function localLogoHoverSrc(id: string): string {
   return `/portfolio/images/${id}-hover.jpg`;
 }
 
-function frameForCategory(
-  category: PortfolioCategory,
-): FrameKind {
-  if (category === "reels-motion") return "reel";
-  if (category === "logos-branding") return "square";
-  return "feed";
-}
-
 function buildItems(
   count: number,
   category: PortfolioCategory,

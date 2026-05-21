@@ -8,7 +8,7 @@ import { FadeIn } from "@/components/FadeIn";
 import { Section } from "@/components/Section";
 
 export function FounderSection() {
-  const [src, setSrc] = useState(founderSection.imageSrc);
+  const [src, setSrc] = useState<string>(founderSection.imageSrc);
 
   return (
     <Section variant="white">
