@@ -3,15 +3,22 @@
 import { useCallback, useEffect, useState } from "react";
 import { categoryQuickLinks } from "@/content/portfolio";
 
-const VALID = new Set(categoryQuickLinks.map((l) => l.anchorId));
+type CategoryAnchorId = (typeof categoryQuickLinks)[number]["anchorId"];
+type CategoryHash = CategoryAnchorId | "";
+
+const VALID = new Set<string>(categoryQuickLinks.map((l) => l.anchorId));
+
+function parseCategoryHash(raw: string): CategoryHash {
+  return VALID.has(raw) ? (raw as CategoryAnchorId) : "";
+}
 
 export function useCategoryHash() {
-  const [hash, setHash] = useState("");
+  const [hash, setHash] = useState<CategoryHash>("");
 
   useEffect(() => {
     const sync = () => {
       const h = window.location.hash.replace("#", "");
-      setHash(VALID.has(h) ? h : "");
+      setHash(parseCategoryHash(h));
     };
     sync();
     window.addEventListener("hashchange", sync);
@@ -24,7 +31,7 @@ export function useCategoryHash() {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
     window.history.pushState(null, "", `/#${anchorId}`);
-    setHash(anchorId);
+    setHash(parseCategoryHash(anchorId));
   }, []);
 
   return { activeHash: hash, scrollToCategory, isValidCategory: (id: string) => VALID.has(id) };
