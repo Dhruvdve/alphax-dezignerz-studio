@@ -4,7 +4,11 @@ GitHub **blocks any file over 100 MB**.
 
 ## Your issue
 
-`reel-6.mp4` was **~146 MB** (blocked). After compressing to **under 100 MB**, push works.
+`reel-6.mp4` was **~146 MB** (blocked). `reel-7.mp4` was **~89 MB** (warning). GitHub hard limit is **100 MB** per file.
+
+**If push still fails:** the old 146 MB file is still in **git history**. Run **`FIX-LARGE-PUSH.bat`** (not just PUSH-NOW.bat).
+
+After compressing `reel-6` on disk (e.g. to ~1–50 MB), run `FIX-LARGE-PUSH.bat` again so the small file is re-added.
 
 ## Fix (choose one)
 

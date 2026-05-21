@@ -21,8 +21,21 @@ if (Test-Path "public\portfolio\videos\reel-6.mp4") {
 git status -sb 2>&1 | ForEach-Object { Log $_ }
 git log -1 --oneline 2>&1 | ForEach-Object { Log $_ }
 
-Log "--- filter-branch (remove old 146MB reel-6 from history) ---"
-git filter-branch --force --index-filter "git rm --cached --ignore-unmatch public/portfolio/videos/reel-6.mp4" --prune-empty HEAD 2>&1 | ForEach-Object { Log $_ }
+Log "--- filter-branch (remove reel-6 + reel-7 from history) ---"
+git filter-branch --force --index-filter "git rm --cached --ignore-unmatch public/portfolio/videos/reel-6.mp4 public/portfolio/videos/reel-7.mp4" --prune-empty HEAD 2>&1 | ForEach-Object { Log $_ }
+if (Test-Path ".git\refs\original") { Remove-Item -Recurse -Force ".git\refs\original" }
+git reflog expire --expire=now --all 2>&1 | ForEach-Object { Log $_ }
+git gc --prune=now 2>&1 | ForEach-Object { Log $_ }
+
+$limit = 99000000
+foreach ($name in @("reel-6.mp4", "reel-7.mp4")) {
+  $p = Join-Path $repo "public\portfolio\videos\$name"
+  if ((Test-Path $p) -and (Get-Item $p).Length -le $limit) {
+    git add -f "public/portfolio/videos/$name" 2>&1 | ForEach-Object { Log $_ }
+  } elseif (Test-Path $p) {
+    Log "SKIP $name — still over 95 MB on disk; compress before git add"
+  }
+}
 
 git add -A 2>&1 | ForEach-Object { Log $_ }
 git commit -m "Go live: portfolio images, videos, logo, Calendly, LinkedIn" 2>&1 | ForEach-Object { Log $_ }

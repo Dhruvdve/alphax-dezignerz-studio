@@ -8,8 +8,11 @@ echo  All your MP4s are under 100 MB - OK for GitHub.
 echo  reel-6 is now 1.39 MB (was 146 MB before).
 echo.
 
-echo  STEP 1: Remove OLD huge reel-6 from git history (one-time, ~1 min)
-git filter-branch --force --index-filter "git rm --cached --ignore-unmatch public/portfolio/videos/reel-6.mp4" --prune-empty HEAD 2>nul
+echo  STEP 1: Remove OLD huge reel-6 + reel-7 from git history (one-time, ~1-3 min)
+git filter-branch --force --index-filter "git rm --cached --ignore-unmatch public/portfolio/videos/reel-6.mp4 public/portfolio/videos/reel-7.mp4" --prune-empty HEAD 2>nul
+if exist ".git\refs\original" rd /s /q ".git\refs\original"
+git reflog expire --expire=now --all 2>nul
+git gc --prune=now 2>nul
 
 echo.
 echo  STEP 2: Add all files including new small reel-6
