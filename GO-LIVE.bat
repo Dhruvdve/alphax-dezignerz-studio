@@ -24,9 +24,13 @@ if not exist .git (
 git remote remove origin 2>nul
 git remote add origin https://github.com/Dhruvdve/alphax-dezignerz-studio.git
 
+echo Checking for files over 95 MB (GitHub limit 100 MB)...
+powershell -NoProfile -Command "Get-ChildItem -Recurse -File | Where-Object { $_.FullName -notmatch 'node_modules|\.next|\.git' -and $_.Length -gt 99000000 } | ForEach-Object { Write-Host ('SKIP (too large): ' + $_.FullName) }"
+
 echo Staging all files...
 git add -A
 git add public\portfolio\images public\portfolio\videos public\images 2>nul
+git reset public\portfolio\videos\reel-6.mp4 2>nul
 
 echo.
 git status
