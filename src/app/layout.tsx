@@ -17,9 +17,8 @@ const plusJakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-export const metadataBase = new URL(siteConfig.url);
-
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: defaultSeo.title,
   description: defaultSeo.description,
   keywords: [...defaultSeo.keywords] as string[],

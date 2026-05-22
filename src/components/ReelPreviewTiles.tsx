@@ -21,7 +21,7 @@ export function ReelPreviewTiles() {
   );
 }
 
-function ReelTile({ item }: { item: PortfolioItem; index: number }) {
+function ReelTile({ item, index }: { item: PortfolioItem; index: number }) {
   const videoSrc = item.videoSrc ?? reelVideoSrc(item.id);
   const reelHover = useReelHoverPlay(videoSrc);
   const poster = usePortfolioImageSrc(item.imageSrc ?? "", "reel", index);
