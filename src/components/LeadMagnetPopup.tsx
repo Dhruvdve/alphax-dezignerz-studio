@@ -4,6 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { X } from "lucide-react";
 import { leadMagnet } from "@/content/cta";
 import { PrimaryCta } from "@/components/PrimaryCta";
+import { parseJsonResponse } from "@/lib/safe-json";
 
 const STORAGE_KEY = "alphax-lead-popup-dismissed";
 /** Wait before exit-intent can fire (avoids instant popup on accidental top-edge hover) */
@@ -63,7 +64,7 @@ export function LeadMagnetPopup() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, website: "" }),
       });
-      const data = (await res.json()) as { ok?: boolean; error?: string };
+      const data = await parseJsonResponse<{ ok?: boolean; error?: string }>(res);
       if (!res.ok) throw new Error(data.error ?? "Could not submit");
       setStatus("done");
       setMessage("Check your inbox — calendar on the way!");

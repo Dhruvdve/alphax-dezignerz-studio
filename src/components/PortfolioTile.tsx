@@ -149,7 +149,9 @@ export function PortfolioTile({
             }`}
             loading="lazy"
             decoding="async"
-            onError={() => onPortfolioImageError(src, fallbackSrc, setSrc)}
+            onError={() =>
+              onPortfolioImageError(src, fallbackSrc, setSrc, item.imageSrc)
+            }
           />
 
           {logoSwap && item.imageSrcHover ? (
@@ -167,7 +169,12 @@ export function PortfolioTile({
               decoding="async"
               onLoad={() => setHoverReady(true)}
               onError={() => {
-                onPortfolioImageError(hoverSrc, fallbackSrc, setHoverSrc);
+                onPortfolioImageError(
+                  hoverSrc,
+                  fallbackSrc,
+                  setHoverSrc,
+                  item.imageSrcHover,
+                );
                 if (hoverSrc === fallbackSrc) setHoverReady(false);
               }}
             />

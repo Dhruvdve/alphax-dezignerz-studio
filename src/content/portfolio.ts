@@ -1,4 +1,5 @@
 import { reelVideoSrc } from "@/content/media";
+import { portfolioImagePath } from "@/content/portfolio-image-ext";
 
 export type PortfolioCategory =
   | "social-media"
@@ -221,15 +222,9 @@ export function getPortfolioDemoFallback(frame: FrameKind, index: number): strin
   return n === 1 ? "/portfolio/placeholder-feed.svg" : `/portfolio/placeholder-feed-${n}.svg`;
 }
 
-/**
- * Your file: `public/portfolio/images/{id}.jpg` or `{id}.png` (same base name).
- * Reels + posts default to .png (your uploads); others default to .jpg.
- */
+/** Uses `portfolio-image-ext.ts` when the file exists; else .png (reels) or .jpg. */
 function localImageSrc(id: string): string {
-  if (id.startsWith("reel-") || id.startsWith("sm-post-")) {
-    return `/portfolio/images/${id}.png`;
-  }
-  return `/portfolio/images/${id}.jpg`;
+  return portfolioImagePath(id);
 }
 
 /** Logo hover: `logo-1-hover.jpg` or `logo-1-hover.png` */

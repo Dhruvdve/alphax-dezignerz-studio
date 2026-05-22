@@ -39,7 +39,6 @@ function Thumb({ item, index }: { item: PortfolioItem; index: number }) {
       ) : null}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        key={src}
         src={src}
         alt=""
         loading="eager"

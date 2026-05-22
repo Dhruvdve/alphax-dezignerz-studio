@@ -15,7 +15,11 @@ function buildSrcChain(
   thumbIndex: number,
 ): string[] {
   const fallback = getPortfolioDemoFallback(frame, thumbIndex);
-  return buildPortfolioImageChain(imageSrc, fallback);
+  const chain = buildPortfolioImageChain(imageSrc, fallback);
+  if (frame === "square" && /\/logo-\d+\.(jpe?g|png)$/i.test(imageSrc)) {
+    return [...new Set([fallback, ...chain])];
+  }
+  return chain;
 }
 
 export function usePortfolioImageSrc(

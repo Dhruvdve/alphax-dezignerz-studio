@@ -4,6 +4,7 @@ import { useState } from "react";
 import { insightsNewsletter } from "@/content/cta";
 import { FadeIn } from "@/components/FadeIn";
 import { Section } from "@/components/Section";
+import { parseJsonResponse } from "@/lib/safe-json";
 
 export function InsightsNewsletter() {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export function InsightsNewsletter() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, website: "" }),
       });
-      const data = (await res.json()) as { ok?: boolean; error?: string };
+      const data = await parseJsonResponse<{ ok?: boolean; error?: string }>(res);
       if (!res.ok) throw new Error(data.error ?? "Could not subscribe");
       setStatus("done");
       setMessage("You're in — watch your inbox for the first insight.");
