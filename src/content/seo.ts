@@ -26,11 +26,13 @@ const ogImageMeta = {
 
 function siteVerification(): Metadata["verification"] | undefined {
   const google = process.env.GOOGLE_SITE_VERIFICATION;
-  const other: Record<string, string> = {};
-  if (google) other.google = google;
   const bing = process.env.BING_SITE_VERIFICATION;
-  if (bing) other.other = { "msvalidate.01": bing };
-  return Object.keys(other).length ? other : undefined;
+  if (!google && !bing) return undefined;
+
+  return {
+    ...(google ? { google } : {}),
+    ...(bing ? { other: { "msvalidate.01": bing } } : {}),
+  };
 }
 
 export const rootMetadata: Metadata = {
@@ -71,16 +73,16 @@ export function pageMetadata(
   const canonical =
     overrides?.alternates?.canonical ??
     (overrides?.path ? overrides.path : undefined);
+  const canonicalPath = typeof canonical === "string" ? canonical : undefined;
 
   return {
-    ...overrides,
     title,
     description,
     keywords: (overrides?.keywords ?? defaultSeo.keywords) as string[],
     robots: overrides?.robots ?? { index: true, follow: true },
     alternates: {
       ...overrides?.alternates,
-      ...(canonical ? { canonical } : {}),
+      ...(canonical ? { canonical: canonicalPath ?? canonical } : {}),
     },
     openGraph: {
       type: "website",
@@ -88,16 +90,14 @@ export function pageMetadata(
       siteName: siteConfig.name,
       title,
       description,
-      ...(canonical ? { url: canonical } : {}),
+      ...(canonicalPath ? { url: canonicalPath } : {}),
       images: [ogImageMeta],
-      ...overrides?.openGraph,
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
       images: [defaultSeo.ogImage],
-      ...overrides?.twitter,
     },
   };
 }
