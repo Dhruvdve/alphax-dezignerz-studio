@@ -26,7 +26,7 @@ const ogImageMeta = {
 
 function siteVerification(): Metadata["verification"] | undefined {
   const google = process.env.GOOGLE_SITE_VERIFICATION;
-  const bing = process.env.BING_SITE_VERIFICATION;
+  const bing = process.env.BING_SITE_VERIFICATION ?? "EF340871B3925EDE3C797C6D51617BEC";
   if (!google && !bing) return undefined;
 
   return {
