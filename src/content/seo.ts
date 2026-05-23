@@ -45,7 +45,11 @@ export const rootMetadata: Metadata = {
   keywords: [...defaultSeo.keywords],
   authors: [{ name: siteConfig.owner, url: siteConfig.behanceUrl }],
   creator: siteConfig.owner,
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
   alternates: { canonical: "/" },
   verification: siteVerification(),
   openGraph: {
