@@ -6,6 +6,8 @@ const jsonLd = {
   name: siteConfig.name,
   description: siteConfig.description,
   url: siteConfig.url,
+  image: `${siteConfig.url}/og-image.jpg`,
+  logo: `${siteConfig.url}/images/alphax-logo.svg`,
   telephone: siteConfig.phoneTel,
   email: siteConfig.email,
   address: {

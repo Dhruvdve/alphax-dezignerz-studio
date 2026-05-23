@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seo:ping": "node scripts/indexnow-ping.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.15.0",

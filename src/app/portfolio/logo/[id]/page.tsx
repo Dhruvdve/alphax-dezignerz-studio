@@ -5,6 +5,7 @@ import {
   getLogoCaseStudy,
   logoCaseStudyIds,
 } from "@/content/logo-case-studies";
+import { pageMetadata } from "@/content/seo";
 
 type PageProps = { params: Promise<{ id: string }> };
 
@@ -17,11 +18,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const study = getLogoCaseStudy(id);
   if (!study) return { title: "Case study" };
 
-  return {
+  return pageMetadata({
     title: `${study.clientName} — Logo process`,
     description: study.intro,
     alternates: { canonical: `/portfolio/logo/${id}` },
-  };
+  });
 }
 
 export default async function LogoCaseStudyPage({ params }: PageProps) {

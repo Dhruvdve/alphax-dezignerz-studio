@@ -70,10 +70,13 @@ SSL is automatic after DNS propagates (often 5–60 minutes).
 
 - [ ] Replace `public/clients/*.png` with real client logos (permission granted).
 - [ ] Upload portfolio JPGs to `public/portfolio/images/` (see `PORTFOLIO-FILES.md`).
-- [ ] Add `public/og-image.jpg` (1200×630) for social previews.
+- [ ] Add your social preview image as `public/og-image.jpg` (1200×630 JPG you provide).
 - [ ] Test WhatsApp CTA on mobile.
 - [ ] Set `NEXT_PUBLIC_CALENDLY_URL` to your live booking link.
-- [ ] Submit sitemap: `https://alphaxdezignerzstudio.com/sitemap.xml` in Google Search Console.
+- [ ] **SEO:** Verify site in [Google Search Console](https://search.google.com/search-console), add `GOOGLE_SITE_VERIFICATION` in Vercel env, redeploy.
+- [ ] **SEO:** Import site in [Bing Webmaster Tools](https://www.bing.com/webmasters), add `BING_SITE_VERIFICATION` if needed, enable IndexNow (key file is already on the site).
+- [ ] **SEO:** Submit sitemap `https://alphaxdezignerzstudio.com/sitemap.xml` in GSC and Bing.
+- [ ] **SEO:** After deploy, run `npm run seo:ping` to notify IndexNow.
 
 ## Deploy from CLI (optional)
 
