@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Turn Your Travel Reels into Booking Machines",
   description:
     "Premium social media design, branding, and reels for Indian travel agencies. Trusted by 15+ travel brands across India.",
-  url: "https://alphaxdezignerzstudio.com",
+  url: "https://www.alphaxdezignerzstudio.com",
   owner: "Dhruvdev Patel",
   ownerTitle: "Founder & Creative Director",
   location: "Ahmedabad, Gujarat, India",

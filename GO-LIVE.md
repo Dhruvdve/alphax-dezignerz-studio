@@ -75,7 +75,8 @@ SSL is automatic after DNS propagates (often 5–60 minutes).
 - [ ] Set `NEXT_PUBLIC_CALENDLY_URL` to your live booking link.
 - [ ] **SEO:** Verify site in [Google Search Console](https://search.google.com/search-console), add `GOOGLE_SITE_VERIFICATION` in Vercel env, redeploy.
 - [ ] **SEO:** Import site in [Bing Webmaster Tools](https://www.bing.com/webmasters), add `BING_SITE_VERIFICATION` if needed, enable IndexNow (key file is already on the site).
-- [ ] **SEO:** Submit sitemap `https://alphaxdezignerzstudio.com/sitemap.xml` in GSC and Bing.
+- [x] **SEO:** Submit sitemap `https://alphaxdezignerzstudio.com/sitemap.xml` in GSC (done).
+- [ ] **SEO:** Submit same sitemap in Bing Webmaster Tools (sign in with Microsoft).
 - [ ] **SEO:** After deploy, run `npm run seo:ping` to notify IndexNow.
 
 ## Deploy from CLI (optional)
