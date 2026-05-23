@@ -29,6 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${plusJakarta.variable} scroll-smooth`}>
+      <head>
+        <meta name="msvalidate.01" content="EF340871B3925EDE3C797C6D51617BEC" />
+      </head>
       <body className={`min-h-screen ${plusJakarta.className}`}>
         <JsonLd />
         <ScarcityBanner />
